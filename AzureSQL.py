@@ -105,6 +105,8 @@ def GetUserID(username, cursor, conn):
     if row is not None:  
         return row[0]
     return None
+
+    
 def GetCourses(cursor, conn):
     cursor.execute("SELECT course_code FROM UstudyCourses")  
     rows = cursor.fetchall()  

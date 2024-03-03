@@ -17,6 +17,21 @@
     <link rel="stylesheet" href="/../static/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/../static/assets/images/favicon.png" />
+
+
+    <style>  
+      form.card-form {  
+          margin: 0;  
+          padding: 0;  
+          border: 0;  
+          display: block;  
+          width: 100%;  
+          height: 100%;  
+      }  
+      
+  </style> 
+
+
   </head>
   <body>
     <div class="container-scroller">
@@ -35,7 +50,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                  <h5 class="mb-0 font-weight-normal">{{username}}</h5>
                   <span>Gold Member</span>
                 </div>
               </div>
@@ -244,7 +259,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Hamza Bouzoubaa</p>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{username}}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -292,116 +307,128 @@
             </div>  
             <div class="row">  
               <!-- Repeat this block for each class -->  
-              <div class="col-lg-6 grid-margin stretch-card">      
-                <div class="card" style="width: 18rem; transition: all 0.3s ease; position: relative;" onclick="location.href='/course'">      
-                  <div class="row no-gutters">      
-                    <div class="col-md-4 d-flex flex-column align-items-center p-2">      
-                      <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">      
-                      <h5 class="card-title mt-2">John Doe</h5>      
-                    </div>      
-                    <div class="col-md-8">      
-                      <div class="card-body">
-                        <h3 class="card-title">CS101</h3>  
-                        <div class="card-text">    
-                          <p>Next class: Monday 10pm at CRX 3104</p>    
-                          <ul>    
-                            <li class="text-muted">Quiz on chap 1 and 2</li>    
-                            <li class="text-muted">Assignment 2 this Monday</li>    
-                            <li class="text-muted">Lab 2 due next Saturday</li>    
-                          </ul>    
-                        </div>  
-                      </div>      
-                    </div>      
-                  </div>  
-                  <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">    
-                    Midterm in 2 days    
-                  </div>    
-                </div>      
-              </div>    
-              
-              <div class="col-lg-6 grid-margin stretch-card">      
-                <div class="card" style="width: 18rem; transition: all 0.3s ease; position: relative;" onclick="location.href='/course'">      
-                  <div class="row no-gutters">      
-                    <div class="col-md-4 d-flex flex-column align-items-center p-2">      
-                      <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">      
-                      <h5 class="card-title mt-2">John Doe</h5>      
-                    </div>      
-                    <div class="col-md-8">      
-                      <div class="card-body">  
-                        <h3 class="card-title">CS101</h3>  
-                        <div class="card-text">    
-                          <p>Next class: Monday 10pm at CRX 3104</p>    
-                          <ul>    
-                            <li class="text-muted">Quiz on chap 1 and 2</li>    
-                            <li class="text-muted">Assignment 2 this Monday</li>    
-                            <li class="text-muted">Lab 2 due next Saturday</li>    
-                          </ul>    
-                        </div>  
-                      </div>      
-                    </div>      
-                  </div>  
-                  <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">    
-                    Midterm in 2 days    
-                  </div>    
-                </div>      
-              </div>    
+                <div class="col-lg-6 grid-margin stretch-card">  
+                  <form class="card-form" method="POST" action="/main">  
+                      <input type="hidden" name="course_code" value="SEG2506">  
+                      <div class="card" onclick="this.parentNode.submit()">  
+                          <div class="row no-gutters">          
+                              <div class="col-md-4 d-flex flex-column align-items-center p-2">          
+                                  <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">          
+                                  <h5 class="card-title mt-2">John Doe</h5>          
+                              </div>          
+                              <div class="col-md-8">          
+                                  <div class="card-body">    
+                                      <h3 class="card-title">SEG2506</h3>      
+                                      <div class="card-text">        
+                                          <p>Next class: Monday 10pm at CRX 3104</p>        
+                                          <ul>        
+                                              <li class="text-muted">Quiz on chap 1 and 2</li>        
+                                              <li class="text-muted">Assignment 2 this Monday</li>        
+                                              <li class="text-muted">Lab 2 due next Saturday</li>        
+                                          </ul>        
+                                      </div>      
+                                  </div>          
+                              </div>          
+                          </div>      
+                          <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">        
+                              Midterm in 2 days        
+                          </div>    
+                      </div>  
+                  </form>  
+              </div>  
+              <div class="col-lg-6 grid-margin stretch-card">  
+                <form class="card-form" method="POST" action="/main">  
+                    <input type="hidden" name="course_code" value="CSI2501">  
+                    <div class="card" onclick="this.parentNode.submit()">  
+                        <div class="row no-gutters">          
+                            <div class="col-md-4 d-flex flex-column align-items-center p-2">          
+                                <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">          
+                                <h5 class="card-title mt-2">John Doe</h5>          
+                            </div>          
+                            <div class="col-md-8">          
+                                <div class="card-body">    
+                                    <h3 class="card-title">CSI2501</h3>      
+                                    <div class="card-text">        
+                                        <p>Next class: Monday 10pm at CRX 3104</p>        
+                                        <ul>        
+                                            <li class="text-muted">Quiz on chap 1 and 2</li>        
+                                            <li class="text-muted">Assignment 2 this Monday</li>        
+                                            <li class="text-muted">Lab 2 due next Saturday</li>        
+                                        </ul>        
+                                    </div>      
+                                </div>          
+                            </div>          
+                        </div>      
+                        <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">        
+                            Midterm in 2 days        
+                        </div>    
+                    </div>  
+                </form>  
+            </div>  
+                  
+            
+          
                
-              <div class="col-lg-6 grid-margin stretch-card">      
-                <div class="card" style="width: 18rem; transition: all 0.3s ease; position: relative;" onclick="location.href='/../../../templates/course.html'">      
-                  <div class="row no-gutters">      
-                    <div class="col-md-4 d-flex flex-column align-items-center p-2">      
-                      <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">      
-                      <h5 class="card-title mt-2">John Doe</h5>      
-                    </div>      
-                    <div class="col-md-8">      
-                      <div class="card-body">  
-                        <h3 class="card-title">CS101</h3>  
-
-                        <div class="card-text">    
-                          <p>Next class: Monday 10pm at CRX 3104</p>    
-                          <ul>    
-                            <li class="text-muted">Quiz on chap 1 and 2</li>    
-                            <li class="text-muted">Assignment 2 this Monday</li>    
-                            <li class="text-muted">Lab 2 due next Saturday</li>    
-                          </ul>    
-                        </div>  
-                      </div>      
-                    </div>      
-                  </div>  
-                  <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">    
-                    Midterm in 2 days    
-                  </div>    
-                </div>      
-              </div>    
+              <div class="col-lg-6 grid-margin stretch-card">  
+                <form class="card-form" method="POST" action="/main">  
+                    <input type="hidden" name="course_code" value="EVS1501">  
+                    <div class="card" onclick="this.parentNode.submit()">  
+                        <div class="row no-gutters">          
+                            <div class="col-md-4 d-flex flex-column align-items-center p-2">          
+                                <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">          
+                                <h5 class="card-title mt-2">John Doe</h5>          
+                            </div>          
+                            <div class="col-md-8">          
+                                <div class="card-body">    
+                                    <h3 class="card-title">EVS1501</h3>      
+                                    <div class="card-text">        
+                                        <p>Next class: Monday 10pm at CRX 3104</p>        
+                                        <ul>        
+                                            <li class="text-muted">Quiz on chap 1 and 2</li>        
+                                            <li class="text-muted">Assignment 2 this Monday</li>        
+                                            <li class="text-muted">Lab 2 due next Saturday</li>        
+                                        </ul>        
+                                    </div>      
+                                </div>          
+                            </div>          
+                        </div>      
+                        <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">        
+                            Midterm in 2 days        
+                        </div>    
+                    </div>  
+                </form>  
+            </div>  
                
 
-              <div class="col-lg-6 grid-margin stretch-card">      
-                <div class="card" style="width: 18rem; transition: all 0.3s ease; position: relative;" onclick="location.href='/../../../templates/course.html'">      
-                  <div class="row no-gutters">      
-                    <div class="col-md-4 d-flex flex-column align-items-center p-2">      
-                      <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">      
-                      <h5 class="card-title mt-2">John Doe</h5>      
-                    </div>      
-                    <div class="col-md-8">      
-                      <div class="card-body">  
-                        <h3 class="card-title">CS101</h3>  
-
-                        <div class="card-text">    
-                          <p>Next class: Monday 10pm at CRX 3104</p>    
-                          <ul>    
-                            <li class="text-muted">Quiz on chap 1 and 2</li>    
-                            <li class="text-muted">Assignment 2 this Monday</li>    
-                            <li class="text-muted">Lab 2 due next Saturday</li>    
-                          </ul>    
-                        </div>  
-                      </div>      
-                    </div>      
-                  </div>  
-                  <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">    
-                    Midterm in 2 days    
-                  </div>    
-                </div>      
-              </div>    
+              <div class="col-lg-6 grid-margin stretch-card">  
+                <form class="card-form" method="POST" action="/main">  
+                    <input type="hidden" name="course_code" value="SEG2911">  
+                    <div class="card" onclick="this.parentNode.submit()">  
+                        <div class="row no-gutters">          
+                            <div class="col-md-4 d-flex flex-column align-items-center p-2">          
+                                <img src="/static/assets/images/faces/Prof1.jpeg" class="card-img" style="width: 100%; object-fit: cover;">          
+                                <h5 class="card-title mt-2">John Doe</h5>          
+                            </div>          
+                            <div class="col-md-8">          
+                                <div class="card-body">    
+                                    <h3 class="card-title">SEG2911</h3>      
+                                    <div class="card-text">        
+                                        <p>Next class: Monday 10pm at CRX 3104</p>        
+                                        <ul>        
+                                            <li class="text-muted">Quiz on chap 1 and 2</li>        
+                                            <li class="text-muted">Assignment 2 this Monday</li>        
+                                            <li class="text-muted">Lab 2 due next Saturday</li>        
+                                        </ul>        
+                                    </div>      
+                                </div>          
+                            </div>          
+                        </div>      
+                        <div class="alert alert-warning mb-0 position-absolute w-100" role="alert" style="bottom: 0; background-color: azure;">        
+                            Midterm in 2 days        
+                        </div>    
+                    </div>  
+                </form>  
+            </div>  
               
                 
                   
@@ -416,7 +443,10 @@
           
         <style>  
         .card:hover {  
-          transform: scale(1.05);  
+          transform: scale(1.05); 
+          
+          
+
         }  
         </style>  
         

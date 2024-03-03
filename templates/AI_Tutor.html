@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assignment Discussion - Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/../static/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/../static/assets/vendors/css/vendor.bundle.base.css">
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/../static/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/../static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/../static/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/../static/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/../static/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/../static/assets/images/favicon.png" />
+    <!-- Custom styles for chat -->
+    <style>
+        .chat-container {
+            padding: 20px;
+            height: 65vh; /* Adjusted for integration */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            display: flex;
+        }
+        .message .message-body {
+            max-width: 60%;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #f2f2f2;
+            color: black;
+            display: inline-block;
+        }
+        .message.me {
+            justify-content: flex-end;
+        }
+        .message.me .message-body {
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+        }
+        
+        .input-group .form-control {
+            color: white; /* Change text color */
+
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container-scroller">
+    <!-- Sidebar -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+            <a class="sidebar-brand brand-logo" href="index.html"><img src="/../static/assets/images/logo.svg" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
+        </div>
+        <ul class="nav">
+            <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/course">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-view-dashboard"></i>
+                  </span>
+                  <span class="menu-title">Home page</span>
+                </a>
+              </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/midtermDiscussion">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-forum"></i>
+                    </span>
+                    <span class="menu-title">Midterm Discussion</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/finalDiscussion">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-forum"></i>
+                    </span>
+                    <span class="menu-title">Final Discussion</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/AssignmentHelp">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-forum"></i>
+                    </span>
+                    <span class="menu-title">Assignment Help</span>
+                </a>
+            </li>
+            <li class="nav-item" style="background-color: #333648;">
+                <a class="nav-link" href="#" style="color: white;">
+                    <i class="mdi mdi-robot" style="color: #4FC3F7;"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-title">My Tutor</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- Navbar -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                <!-- Navbar content here -->
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <!-- Chat container -->  
+                <div class="chat-container">  
+                    <!-- User message here -->  
+                    <div class="user-message">  
+                        <!-- User message will be inserted here -->  
+                    </div>  
+                    <!-- AI message here -->  
+                    <div id="ai-message">  
+                        {{answer}} 
+                    </div>  
+                </div> 
+                <!-- Message input -->
+                <form method="POST" action="AI_Tutor">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Type a message..." aria-label="Recipient's username" aria-describedby="button-addon2" name="UserQuery">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!-- Footer -->
+             
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="/../static/assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- inject:js -->
+<script src="/../static/assets/js/off-canvas.js"></script>
+<script src="/../static/assets/js/hoverable-collapse.js"></script>
+<script src="/../static/assets/js/misc.js"></script>
+<!-- endinject -->
+</body>
+</html>
