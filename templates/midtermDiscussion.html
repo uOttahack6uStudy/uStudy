@@ -145,6 +145,51 @@
 <script src="/../static/assets/js/off-canvas.js"></script>
 <script src="/../static/assets/js/hoverable-collapse.js"></script>
 <script src="/../static/assets/js/misc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script>
+    var currentUser = "{{ session['username'] }}"; // Assuming you store the username in the session
+</script>
+
+<script>
+    var socket = io(); 
+
+
+    var room = window.location.pathname.split('/').pop().split('.')[0]; // This will extract 'midtermDiscussion' or 'finalDiscussion' from the URL
+
+    socket.on('connect', function() {
+        // Now, emit an event to join the room after connection
+        socket.emit('join', {'room': room});
+    });
+    socket.on('message', function(data) {
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+
+        // Check if the message was sent by the current user
+        if(data.sender === currentUser) {
+            messageElement.classList.add('me');
+            messageElement.innerHTML = `<div class="message-body"><strong>You:</strong> ${data.text}</div>`;
+        } else {
+            messageElement.classList.add('other');
+            messageElement.innerHTML = `<div class="message-body"><strong>${data.sender}:</strong> ${data.text}</div>`;
+        }
+
+        document.querySelector('.chat-container').appendChild(messageElement);
+        // Scroll to the bottom of the chat container whenever a new message is added
+        document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
+    });
+
+    // Event listener for the Send button
+    document.getElementById('button-addon2').addEventListener('click', function() {
+        var messageInput = document.querySelector('input.form-control');
+        var message = messageInput.value.trim();
+        if(message) { // Only send non-empty messages
+            socket.send(message);
+            messageInput.value = ''; // Clear the input field after sending
+        }
+    });
+</script>
+
+
 <!-- endinject -->
 </body>
 </html>

@@ -3,6 +3,7 @@ from PineconeRAG import SearchInPineconeIndex
 from GPTanswers import generate_response
 from flask import Flask, render_template,request,flash,session,redirect,url_for
 from dotenv import load_dotenv
+from flask_socketio import SocketIO, join_room, send, emit
 import os
 
 MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
@@ -108,5 +109,18 @@ def assignmentHelp():
     return render_template('assignmentHelp.html')
 
 
+@socketio.on('message')
+def handleMessage(msg):
+    username = session.get('username', 'Anonymous')  # Adjust based on how you handle user authentication
+    message_data = {'text': msg, 'sender': username}
+    emit('message', message_data, broadcast=True)
+
+@socketio.on('join')
+def on_join(data):
+    room = data['room']
+    join_room(room)
+    emit('message', {'sender': 'System', 'text': f'{session.get("username", "Someone")} has joined {room}.'}, room=room)
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)
