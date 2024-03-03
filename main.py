@@ -3,8 +3,6 @@ from flask import Flask, render_template,request,flash,session,redirect,url_for
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # This loads the .env file at the application start
-
 MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
 
 app = Flask(__name__)

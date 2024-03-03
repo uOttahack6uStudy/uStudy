@@ -1,10 +1,7 @@
 import pyodbc  
 import bcrypt  
-import base64
-import ast  
 
 
-from dotenv import load_dotenv  
 import os   
   
 # Get the API keys from environment variables  
@@ -108,7 +105,19 @@ def GetUserID(username, cursor, conn):
     if row is not None:  
         return row[0]
     return None
+def GetCourses(cursor, conn):
+    cursor.execute("SELECT course_code FROM UstudyCourses")  
+    rows = cursor.fetchall()  
+    rows = [row[0] for row in rows]
+    return rows
 
+
+#MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
+
+#cursor,conn = ConnectToAzureSQL(MicrosoftEntraPass)
+
+#course = GetCourses(cursor, conn)
+#print(course)
 #AddaFile("test2", 7, cursor, conn)
 #print(DeleteFile("test",7, cursor, conn))
 #print(GetFiles(10, cursor, conn))

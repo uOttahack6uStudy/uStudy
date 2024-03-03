@@ -4,4 +4,37 @@ package-lock.json
 .DS_Store
 .vscode
 .env
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
 venv/
+env/
+.venv/
+env.bak/
+env1/
+env2/
+.python-version
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Local development settings
+.env
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
