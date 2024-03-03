@@ -1,14 +1,17 @@
 from AzureSQL import AddaUser, DeleteUser, AuthenticateUser, ConnectToAzureSQL
 from flask import Flask, render_template,request,flash,session,redirect,url_for
-import os 
-MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
+from dotenv import load_dotenv
+import os
 
+load_dotenv()  # This loads the .env file at the application start
+
+MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
 
 app = Flask(__name__)
 app.secret_key = '12334'  
 
-  
-@app.route('/')  
+
+@app.route('/')    
 def index():  
     if 'username' in session:  
         return redirect(url_for('main')) 
@@ -52,6 +55,21 @@ def register():
     return render_template('register.html')  
 
 
+@app.route('/course')
+def course():
+    return render_template('course.html')
+
+@app.route('/midtermDiscussion')
+def midtermDiscussion():
+    return render_template('midtermDiscussion.html')
+
+@app.route('/finalDiscussion')
+def finalDiscussion():
+    return render_template('finalDiscussion.html')
+
+@app.route('/AssignmentHelp')
+def assignmentHelp():
+    return render_template('assignmentHelp.html')
 @app.route('/main')
 def main():
     return render_template('index.html')
