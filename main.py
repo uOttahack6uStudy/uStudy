@@ -1,7 +1,8 @@
-from AzureSQL import AddaUser, DeleteUser, AuthenticateUser, ConnectToAzureSQL
+from AzureSQL import AddaUser, DeleteUser, AuthenticateUser, ConnectToAzureSQL,GetCourseID,GetCourseNotifications
 from PineconeRAG import SearchInPineconeIndex
 from GPTanswers import generate_response
 from flask import Flask, render_template,request,flash,session,redirect,url_for
+from datetime import datetime  
 from dotenv import load_dotenv
 from flask_socketio import SocketIO, join_room, send, emit
 import os
@@ -13,6 +14,7 @@ OPENAI_KEY = os.getenv('OPENAI_API_KEY')
 
 app = Flask(__name__)
 app.secret_key = '12334'  
+socketio = SocketIO(app)
 
 
 @app.route('/')    
@@ -94,7 +96,33 @@ def AI_Tutor():
 
 @app.route('/course')
 def course():
-    return render_template('course.html')
+    if 'username' in session:
+        today = datetime.now()  
+
+        print("Today's date:", today)
+        
+        #today = datetime.strptime(today.strip(), '%Y-%m-%d %H:%M:%S.%f')    
+
+        cursor,conn = ConnectToAzureSQL(MicrosoftEntraPass)
+        ID = GetCourseID(session['course_clicked'],cursor,conn)
+        Notifications = GetCourseNotifications(ID,cursor,conn)
+        DueDate = Notifications[-1]
+        DueDate = datetime.strptime(DueDate.strip(), '%Y-%m-%d %H:%M:%S.%f') 
+        print(DueDate)         
+ 
+        TimeLeft = DueDate - today
+        print(TimeLeft)
+        Notifications[-1] = TimeLeft 
+        TimeLeft_in_milliseconds = int(TimeLeft.total_seconds() )  
+  
+        Notifications[-1] = TimeLeft_in_milliseconds   
+
+        print(Notifications[-1])
+
+        return render_template('course.html',username=session['username'].split('@')[0],Notifications=Notifications)
+    else:
+        return redirect(url_for('login'))
+    #return render_template('course.html')
 
 @app.route('/midtermDiscussion')
 def midtermDiscussion():
@@ -124,3 +152,5 @@ def on_join(data):
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
+
+    

@@ -113,11 +113,29 @@ def GetCourses(cursor, conn):
     rows = [row[0] for row in rows]
     return rows
 
+def GetCourseID(course_code, cursor, conn):
+    cursor.execute("SELECT ID FROM UstudyCourses WHERE course_code = ?", (course_code,))  
+    row = cursor.fetchone()  
+    if row is not None:  
+        return row[0]
+    return None
 
-#MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
+def GetCourseNotifications(course_ID, cursor, conn):
+    cursor.execute("SELECT notification FROM UstudyNotifications WHERE course_id = ?", (course_ID,))
+    rows = cursor.fetchall()
+    notifications = [row[0] for row in rows]
+    return notifications
+    return None
 
-#cursor,conn = ConnectToAzureSQL(MicrosoftEntraPass)
 
+
+
+MicrosoftEntraPass = os.environ['MICROSOFT_ENTRA_PASSWORD']
+
+cursor,conn = ConnectToAzureSQL(MicrosoftEntraPass)
+id = GetCourseID("CSI2501", cursor, conn)
+notif = GetCourseNotifications(id, cursor, conn)
+print(notif)
 #course = GetCourses(cursor, conn)
 #print(course)
 #AddaFile("test2", 7, cursor, conn)
