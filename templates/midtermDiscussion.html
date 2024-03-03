@@ -56,66 +56,18 @@
 <body>
 <div class="container-scroller">
     <!-- Sidebar -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="index.html"><img src="/../static/assets/images/logo.svg" alt="logo" /></a>
-            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
+    <div class="container-scroller">
+        {% include 'sidebar.html' %}
+        <div class="container-fluid page-body-wrapper">
+           
         </div>
-        <ul class="nav">
-            <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/course">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-view-dashboard"></i>
-                  </span>
-                  <span class="menu-title">Home page</span>
-                </a>
-              </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/midtermDiscussion">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Midterm Discussion</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/finalDiscussion">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Final Discussion</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/AssignmentHelp">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Assignment Help</span>
-                </a>
-            </li>
-            <li class="nav-item" style="background-color: #333648;">
-                <a class="nav-link" href="#" style="color: white;">
-                    <i class="mdi mdi-robot" style="color: #4FC3F7;"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-title">My Tutor</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    </div>
 
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- Navbar -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
-            </div>
-            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-                <!-- Navbar content here -->
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
+
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">

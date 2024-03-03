@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uStudy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+        /* Styling for the main sidebar logo */
+        .sidebar-brand-wrapper .sidebar-brand {
+            font-family: 'Poppins', sans-serif; /* Modern, clean font */
+            color: #4FC3F7; /* Bright, engaging color */
+            background: -webkit-linear-gradient(45deg, #4FC3F7, #FF5252); /* Color gradient for visual appeal */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 28px; /* Larger font size for emphasis */
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .sidebar-brand-wrapper .sidebar-brand:hover {
+            transform: scale(1.1); /* Slightly enlarge on hover for interactivity */
+            cursor: pointer;
+        }
+
+        /* Additional styling to enhance overall sidebar appearance */
+        .nav-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separators for navigation items */
+        }
+
+        .menu-title {
+            font-weight: 500; /* Slightly bolder font for readability */
+        }
+
+        .menu-icon i {
+            color: #4FC3F7; /* Matching icon color to the logo for consistency */
+        }
+    </style>
+</head>
+<body>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="/main">uStudy</a>
+        <a class="sidebar-brand brand-logo-mini" href="">U</a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="/course">
+              <span class="menu-icon">
+                <i class="mdi mdi-view-dashboard"></i>
+              </span>
+              <span class="menu-title">Home page</span>
+            </a>
+          </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="/midtermDiscussion">
+                <span class="menu-icon">
+                    <i class="mdi mdi-forum"></i>
+                </span>
+                <span class="menu-title">Midterm Discussion</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="/finalDiscussion">
+                <span class="menu-icon">
+                    <i class="mdi mdi-forum"></i>
+                </span>
+                <span class="menu-title">Final Discussion</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="/AssignmentHelp">
+                <span class="menu-icon">
+                    <i class="mdi mdi-forum"></i>
+                </span>
+                <span class="menu-title">Assignment Help</span>
+            </a>
+        </li>
+        <li class="nav-item" style="background-color: #333648;">
+            <a class="nav-link" href="#" style="color: white;">
+                <i class="mdi mdi-robot" style="color: #4FC3F7;"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-title">My Tutor</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>
