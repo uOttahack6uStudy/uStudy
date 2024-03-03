@@ -3,6 +3,7 @@ from PineconeRAG import SearchInPineconeIndex
 from GPTanswers import generate_response
 from flask import Flask, render_template,request,flash,session,redirect,url_for
 from datetime import datetime  
+from flask import jsonify  
 from dotenv import load_dotenv
 from flask_socketio import SocketIO, join_room, send, emit
 import os
@@ -26,19 +27,40 @@ def index():
         print("not logged in")
         return redirect(url_for('login'))  # redirect to login route  
     
-@app.route('/main', methods=['GET', 'POST'])
-def main():
-    if request.method == 'POST':
-        session['course_clicked'] = request.form['course_code']
-        print(session['course_clicked'])
+@app.route('/main', methods=['GET', 'POST'])  
+def main():  
+    # Initialize 'MiniChatHistory' in the session if it doesn't exist  
+    if 'MiniChatHistory' not in session:  
+        session['MiniChatHistory'] = []  
+    if 'course_clicked' not in session:  
+        session['course_clicked'] = ""
+  
+    if request.method == 'POST':  
+        # Check if 'UserQuery' is in request.form  
+        if 'UserQuery' in request.form:  
+            UserQuery = request.form['UserQuery']  
 
-        return redirect(url_for('course'))
+  
+            # Read the contents of the file  
+  
+            
+            answer = generate_response(UserQuery,DocResult,False)
+            DocResult = SearchInPineconeIndex(PINECONE_API_KEY,OPENAI_KEY,"ustudy",UserQuery,"syllabus",k=7)
+            
+            session['MiniChatHistory'].append({'user': UserQuery, 'ai': answer})  
+            return jsonify({'ai_response': answer})  
+  
+        # Check if 'course_code' is in request.form and if 'course_clicked' has changed  
+        elif 'course_code' in request.form and session.get('course_clicked') != request.form['course_code']: 
+            session['course_clicked'] = request.form['course_code']  
+            return redirect(url_for('course'))  
+  
+    # Check if 'username' is in the session  
+    if 'username' in session:  
+        return render_template('index.html', username=session['username'].split('@')[0], chat_history=session['MiniChatHistory'])  
+    else:  
+        return redirect(url_for('login'))  
 
-        
-    if 'username' in session:
-        return render_template('index.html',username=session['username'].split('@')[0])
-    else:
-        return redirect(url_for('login'))
 
 
 
@@ -75,23 +97,24 @@ def register():
             print(f"error: {message}")
     return render_template('register.html')  
 
-@app.route('/AI_Tutor', methods=['GET', 'POST'])
-def AI_Tutor():
-    if request.method == 'POST':
-        UserQuery = request.form['UserQuery']
-        print(session['course_clicked'])
-        DocResult = SearchInPineconeIndex(PINECONE_API_KEY,OPENAI_KEY,"ustudy",UserQuery,session['course_clicked'],k=3)
-        answer = generate_response(UserQuery," ",DocResult,False)
-        session['AIAnswer'] = answer
-        print("details:" + str(DocResult))
-        return redirect(url_for('AI_Tutor')) 
+  
+@app.route('/AI_Tutor', methods=['GET', 'POST'])  
+def AI_Tutor():  
+    if 'chat_history' not in session:  
+        session['chat_history'] = []  
+          
+    if request.method == 'POST':  
+        UserQuery = request.form['UserQuery']  
+        print(session['course_clicked'])  
+        DocResult = SearchInPineconeIndex(PINECONE_API_KEY,OPENAI_KEY,"ustudy",UserQuery,session['course_clicked'],k=3)  
+        answer = generate_response(UserQuery,DocResult,False)  
+        print("details:" + str(DocResult))  
+        session['chat_history'].append({'user': UserQuery, 'ai': answer})  
+        return jsonify({'ai_response': answer})  
+  
+    return render_template('AI_Tutor.html', chat_history=session['chat_history'])  
 
-    
-    if 'AIAnswer' in session:
-        return render_template('AI_Tutor.html',answer=session['AIAnswer'])
-    else:
 
-        return render_template('AI_Tutor.html',answer="Ask me a question")
 
 
 @app.route('/course')

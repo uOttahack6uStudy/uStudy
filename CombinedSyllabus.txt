@@ -1,0 +1,50 @@
+Course 1: Introduction aux sciences de l'environnement (EVS1501)  
+   
+- Professors: Léa Chalvin and Dr Danielle Fortin.  
+- Teaching Assistants: Shanie Brault-Nicolajew and Maggie Carter.  
+- Course aims to provide an overview of environmental sciences, focusing on biodiversity losses, soil and ecosystem degradation, contaminant transportation, climatology, atmospheric chemistry, waste management, human population growth, and agriculture and food production.  
+- Course material is copyright protected and should only be used for this course.  
+- The course is divided into two parts, covering human and biological aspects of the environment and physico-chemical aspects of the environment.  
+- Online Assessments: 4 in total, 2 for part 1 and 2 for part 2 (Specific dates not provided).  
+- Mid-term Exam 1: 1 February 2024.  
+- Mid-term Exam 2: 21 March 2024.  
+- Final Exam: During the exam period, specific date not provided.  
+- Course evaluation includes online assessments (20%), two mid-term exams (40%), and a final exam (40%).  
+   
+Course 2: SEG 2506 Construction de logiciels  
+   
+- Professor: Stéphane S. Somé.  
+- Teaching Assistants: Onel Valery Mezip and Michael Malek.  
+- Course introduces students to low-level software design principles, BNF and basic grammar theory, syntax analysis, language and protocol design, formal software construction methods, and more.  
+- Course contributes to several learning outcomes including applying knowledge of regular expressions, grammar, and syntax analysis to solve software engineering problems, designing software systems that involve concurrency, threading and inter-process communication, and using various tools for modeling, analysis, and software behavior generation.  
+- Assignments: 5 in total, specific dates not provided.  
+- Mid-term Exam: 28 February 2024.  
+- Final Exam: Date not provided.  
+- Course evaluation includes assignments (25%), labs (15%), mid-term exam (20%), and final exam (40%).  
+   
+Course 3: CSI/ELG/SEG 2911 - Professional Practice in Engineering and Computing  
+   
+- Instructor: Joe Lostracco.  
+- Course introduces students to professional practices in engineering and computing, including ethical professional practice, legal systems, design safety, leadership, entrepreneurial practices, and global responsibility.  
+- Case 1 Submission: 25 January 2024.  
+- Case 2 Submission: 15 February 2024.  
+- Case 3 Submission: 14 March 2024.  
+- Case 4 Submission: 4 April 2024.  
+- Mid-term Exam: 8 March 2024.  
+- Project Proposal Submission: 29 February 2024.  
+- Project Presentations: 21, 28 March and 4 April 2024.  
+- Submission of Project Technical Paper and Project Educational Video: 10 April 2024.  
+- Course evaluation includes case submissions, mid-term exam, project presentations, and project submission (technical paper and educational video).  
+   
+Course 4: CSI2501A: Structures Discrètes  
+   
+- Instructor: Dr. Mouhcine Guennoun.  
+- The course covers topics including professionalism and regulations, ethical practice, legal systems and intellectual properties, communication skills and reflective practice, and more.  
+- Assignment 1: Due 29 January 2024.  
+- Assignment 2: Due 12 February 2024.  
+- Assignment 3: Due 26 February 2024.  
+- Assignment 4: Due 19 March 2024.  
+- Assignment 5: Due 2 April 2024.  
+- Mid-term Exam: 8 March 2024.  
+- Final Exam: Date not provided.  
+- Course evaluation includes five assignments (25%), mid-term exam (25%), and final exam (50%).

@@ -57,93 +57,78 @@
 <body>
 <div class="container-scroller">
     <!-- Sidebar -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="index.html"><img src="/../static/assets/images/logo.svg" alt="logo" /></a>
-            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
+    <div class="container-scroller">
+        {% include 'sidebar.html' %}
+        <div class="container-fluid page-body-wrapper">
+           
         </div>
-        <ul class="nav">
-            <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/course">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-view-dashboard"></i>
-                  </span>
-                  <span class="menu-title">Home page</span>
-                </a>
-              </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/midtermDiscussion">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Midterm Discussion</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/finalDiscussion">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Final Discussion</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/AssignmentHelp">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-forum"></i>
-                    </span>
-                    <span class="menu-title">Assignment Help</span>
-                </a>
-            </li>
-            <li class="nav-item" style="background-color: #333648;">
-                <a class="nav-link" href="#" style="color: white;">
-                    <i class="mdi mdi-robot" style="color: #4FC3F7;"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-title">My Tutor</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    </div>
 
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- Navbar -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/../static/assets/images/logo-mini.svg" alt="logo" /></a>
-            </div>
-            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-                <!-- Navbar content here -->
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
         <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <!-- Chat container -->  
-                <div class="chat-container">  
-                    <!-- User message here -->  
-                    <div class="user-message">  
-                        <!-- User message will be inserted here -->  
+        <div class="main-panel">  
+            <div class="content-wrapper">  
+                <!-- Chat container -->    
+                <div class="chat-container">    
+                    <!-- Message history -->  
+                    <div id="message-history" style="height: 400px; overflow-y: scroll; margin-bottom: 20px;">  
+                        {% for message in chat_history %}  
+                            <!-- User message -->    
+                            <div class="alert alert-primary" role="alert" style="text-align: right;">    
+                                {{ message.user }}  
+                            </div>    
+                            <!-- AI message -->    
+                            <div class="alert alert-success" role="alert">    
+                                {{ message.ai }}  
+                            </div>  
+                        {% endfor %}  
                     </div>  
-                    <!-- AI message here -->  
-                    <div id="ai-message">  
-                        {{answer}} 
-                    </div>  
-                </div> 
-                <!-- Message input -->
-                <form method="POST" action="AI_Tutor">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Type a message..." aria-label="Recipient's username" aria-describedby="button-addon2" name="UserQuery">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <!-- Footer -->
-             
-        </div>
+          
+                    <!-- Message input -->  
+                    <form id="message-form" method="POST" action="AI_Tutor">  
+                        <div class="input-group mb-3">  
+                            <input type="text" class="form-control" id="message-input" placeholder="Type a message..." aria-label="Recipient's username" aria-describedby="button-addon2" name="UserQuery">  
+                            <div class="input-group-append">  
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Send</button>  
+                            </div>  
+                        </div>  
+                    </form>  
+          
+                    <!-- Delete conversation button -->  
+                    <button class="btn btn-danger" type="button" onclick="deleteConversation()">Delete Conversation</button>  
+                </div>  
+            </div>  
+        </div>  
+          
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+        <script>  
+            $('#message-form').on('submit', function(e) {  
+                e.preventDefault();  
+                var message = $('#message-input').val();  
+                $('#message-history').append('<div class="alert alert-primary" role="alert" style="text-align: right;">' + message + '</div>');  
+                $.ajax({  
+                    url: '/AI_Tutor',  
+                    type: 'POST',  
+                    data: { UserQuery: message },  
+                    success: function(response) {  
+                        $('#message-history').append('<div class="alert alert-success" role="alert">' + response.ai_response + '</div>');  
+                    }  
+                });  
+                $('#message-input').val('');  
+            });  
+          
+            function deleteConversation() {  
+                // Clear message history in the frontend  
+                $('#message-history').html('');  
+          
+                // TODO: Implement a way to clear the chat history in the backend  
+            }  
+        </script>  
+        
+        
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
