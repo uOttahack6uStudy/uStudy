@@ -2,7 +2,6 @@ Project uStudy for uOttahack 6
 Team Omar Ouadouha and Hamza Bouzoubaa
 
 # uStudy
-uStudy is an educational platform revolutionizing collaborative learning. It's powered by Python, Flask, and RAG. Bootstrap ensures a responsive UI, while Azure SQL handles database needs. With uStudy, students access personalized support, dynamic discussion rooms, and real-time course dashboards, enhancing their academic journey.
 
 ## Inspiration
 Our journey began with a clear vision: to transform the landscape of collaborative learning. Recognizing the limitations of existing educational platforms, we were inspired to create uStudy—a space where technology meets education to provide personalized support through AI and foster a community of learners. The drive came from witnessing students' struggles to find effective study groups and resources tailored to their specific courses, sparking the idea to integrate specialized chatbots and discussion rooms into one seamless platform. The speech that the presenter made about wanting to revolutionize education at uOttawa and make a vision for 2030 was also a big inspiration as we would like to give back to our university and make sure that future students have better education.
